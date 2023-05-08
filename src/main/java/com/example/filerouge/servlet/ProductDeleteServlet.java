@@ -12,7 +12,7 @@ import java.io.IOException;
 
 @WebServlet(urlPatterns = ProductDeleteServlet.URL)
 public class ProductDeleteServlet extends HttpServlet {
-    public static final String URL = "/delete-product";
+    public static final String URL = "/auth/delete-product";
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

@@ -14,7 +14,7 @@ import java.util.List;
 
 @WebServlet(urlPatterns = AddCategoryServlet.URL)
 public class AddCategoryServlet extends HttpServlet {
-    public static final String URL = "/add-category";
+    public static final String URL = "/auth/add-category";
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -29,7 +29,7 @@ public class AddCategoryServlet extends HttpServlet {
         String descriptionCategory = req.getParameter("descriptionCategory");
         try {
             new CategoryService().createCategory(nameCategory,descriptionCategory);
-            resp.sendRedirect("list-category");
+            resp.sendRedirect(req.getContextPath() +"/auth/list-category");
         } catch (NumberFormatException e) {
             e.printStackTrace();
             resp.sendRedirect(req.getContextPath() + AddCategoryServlet.URL + "?error=true");

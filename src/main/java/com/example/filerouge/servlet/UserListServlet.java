@@ -15,7 +15,7 @@ import java.util.List;
 
 @WebServlet(urlPatterns = UserListServlet.URL)
 public class UserListServlet extends HttpServlet {
-    public static final String URL = "/list-user";
+    public static final String URL = "/auth/list-user";
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

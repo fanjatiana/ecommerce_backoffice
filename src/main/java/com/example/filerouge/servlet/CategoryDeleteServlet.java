@@ -13,7 +13,7 @@ import java.io.IOException;
 
 @WebServlet(urlPatterns = CategoryDeleteServlet.URL)
 public class CategoryDeleteServlet extends HttpServlet {
-    public static final String URL = "/delete-category";
+    public static final String URL = "/auth/delete-category";
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

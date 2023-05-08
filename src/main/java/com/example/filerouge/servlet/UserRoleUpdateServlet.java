@@ -16,7 +16,7 @@ import java.util.List;
 
 @WebServlet(urlPatterns = UserRoleUpdateServlet.URL)
 public class UserRoleUpdateServlet extends HttpServlet {
-    public static final String URL = "/update-user";
+    public static final String URL = "/auth/update-user";
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

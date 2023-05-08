@@ -11,7 +11,7 @@ import java.io.IOException;
 
 @WebServlet(urlPatterns = LogoutServlet.URL)
 public class LogoutServlet extends HttpServlet {
-    public static final String URL = "/logout";
+    public static final String URL = "/auth/logout";
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();

@@ -15,7 +15,7 @@ import java.util.List;
 
 @WebServlet(urlPatterns = CategoryListServlet.URL)
 public class CategoryListServlet extends HttpServlet {
-    public static final String URL = "/list-category";
+    public static final String URL = "/auth/list-category";
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

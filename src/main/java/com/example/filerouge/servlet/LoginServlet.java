@@ -16,7 +16,7 @@ public class LoginServlet extends HttpServlet {
     public static final String URL = "/login";
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher(req.getContextPath() +"/WEB-INF/login.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/login.jsp").forward(req, resp);
     }
 
     @Override
@@ -31,10 +31,10 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("username", user);
             session.setAttribute("role", user.getRole().getRoleName());
             System.out.println(user.getRole().getRoleName());
-            resp.sendRedirect("/list-product");
+            resp.sendRedirect(req.getContextPath() +"/auth/list-product");
         } else {
             req.setAttribute("isError", true);
-            req.getRequestDispatcher(req.getContextPath() +"/WEB-INF/login.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/login.jsp").forward(req, resp);
         }
     }
 }
