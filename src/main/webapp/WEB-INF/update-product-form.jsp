@@ -10,7 +10,8 @@
 </head>
 <body>
 <c:import url="header.jsp"></c:import>
-<h1>Update Product</h1>
+<div class="container my-5">
+<h1 class="mb-4">Update Product</h1>
 <form method="post" action="${pageContext.request.contextPath}/auth/update-product" enctype="multipart/form-data">
     <div class="mb-3">
         <input type="hidden" class="form-control" name="id" id="id" value="${id}">
@@ -43,5 +44,6 @@
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>
 </form>
+</div>
 </body>
 </html>

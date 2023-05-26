@@ -13,7 +13,7 @@ public class ProudactJdbcDao implements ProductDao {
     @Override
     public Product create(Product entity) {
         Connection connection = ConnectionManager.getInstance();
-        String query = "INSERT INTO products (nameProduct, descriptionProduct, PriceProduct, selectedProduct, photoProduct, idCategory) VALUES (?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO products (name_product, description_product, price_product, selected_product, photo_product, category_id_category) VALUES (?, ?, ?, ?, ?, ?)";
         try (PreparedStatement pst = connection.prepareStatement(query,Statement.RETURN_GENERATED_KEYS)) {
             pst.setString(1, entity.getNameProduct());
             pst.setString(2, entity.getDescriptionProduct());
@@ -39,9 +39,9 @@ public class ProudactJdbcDao implements ProductDao {
     @Override
     public List<Product> findAll() {
         Connection connection = ConnectionManager.getInstance();
-        String query = "SELECT p.idProduct, p.nameProduct, p.descriptionProduct, p.PriceProduct, p.selectedProduct, p.photoProduct,c.idCategory, c.nameCategory, c.descriptionCategory " +
+        String query = "SELECT p.id_product, p.name_product, p.description_product, p.price_product, p.selected_product, p.photo_product,c.id_category, c.name_category, c.description_category " +
                 "FROM products p " +
-                "INNER JOIN categories c ON p.idCategory = c.idCategory";
+                "INNER JOIN categories c ON p.category_id_category = c.id_category";
         List<Product> productList = new ArrayList<>();
 
         try (Statement pst = connection.createStatement()) {
@@ -49,13 +49,13 @@ public class ProudactJdbcDao implements ProductDao {
 
             while (result.next()) {
                 Product p = new Product(
-                        result.getInt("idProduct"),
-                        result.getString("nameProduct"),
-                        result.getString("descriptionProduct"),
-                        result.getDouble("PriceProduct"),
-                        result.getBoolean("selectedProduct"),
-                        result.getString("photoProduct"),
-                        new Category(result.getInt("idCategory"), result.getString("nameCategory"),result.getString("descriptionCategory"))
+                        result.getInt("id_product"),
+                        result.getString("name_product"),
+                        result.getString("description_product"),
+                        result.getDouble("price_product"),
+                        result.getBoolean("selected_product"),
+                        result.getString("photo_product"),
+                        new Category(result.getInt("id_category"), result.getString("name_category"),result.getString("description_category"))
                 );
                 productList.add(p);
             }
@@ -68,22 +68,22 @@ public class ProudactJdbcDao implements ProductDao {
     @Override
     public Product findById(Integer integer) {
         Connection connection = ConnectionManager.getInstance();
-        String query = "SELECT p.idProduct, p.nameProduct, p.descriptionProduct, p.PriceProduct, p.selectedProduct, p.photoProduct,c.idCategory, c.nameCategory, c.descriptionCategory " +
+        String query = "SELECT p.id_product, p.name_product, p.description_product, p.price_product, p.selected_product, p.photo_product,c.id_category, c.name_category, c.description_category " +
                 "FROM products p " +
-                "INNER JOIN categories c ON p.idCategory = c.idCategory " +
-                "WHERE p.idProduct = ?";
+                "INNER JOIN categories c ON p.category_id_category = c.id_category " +
+                "WHERE p.id_product = ?";
         try (PreparedStatement pst = connection.prepareStatement(query)) {
             pst.setInt(1, integer);
             ResultSet result = pst.executeQuery();
             if (result.next()) {
                 return new Product(
-                        result.getInt("idProduct"),
-                        result.getString("nameProduct"),
-                        result.getString("descriptionProduct"),
-                        result.getDouble("PriceProduct"),
-                        result.getBoolean("selectedProduct"),
-                        result.getString("photoProduct"),
-                        new Category(result.getInt("idCategory"), result.getString("nameCategory"),result.getString("descriptionCategory"))
+                        result.getInt("id_product"),
+                        result.getString("name_product"),
+                        result.getString("description_product"),
+                        result.getDouble("price_product"),
+                        result.getBoolean("selected_product"),
+                        result.getString("photo_product"),
+                        new Category(result.getInt("id_category"), result.getString("name_category"),result.getString("description_category"))
                 );
             } else {
                 return null;
@@ -97,7 +97,7 @@ public class ProudactJdbcDao implements ProductDao {
     @Override
     public void update(Product entity) {
         Connection connection = ConnectionManager.getInstance();
-        String query = "UPDATE products SET nameProduct = ?, descriptionProduct = ?, PriceProduct = ?, selectedProduct = ?, photoProduct = ?, idCategory = ? WHERE idProduct = ?";
+        String query = "UPDATE products SET name_product = ?, description_product = ?, price_product = ?, selected_product = ?, photo_product = ?, category_id_category = ? WHERE id_product = ?";
         try (PreparedStatement pst = connection.prepareStatement(query)) {
             pst.setString(1, entity.getNameProduct());
             pst.setString(2, entity.getDescriptionProduct());
@@ -115,7 +115,7 @@ public class ProudactJdbcDao implements ProductDao {
     @Override
     public void delete(Product entity) {
         Connection connection = ConnectionManager.getInstance();
-        String query = "DELETE FROM products WHERE idProduct = ?";
+        String query = "DELETE FROM products WHERE id_product = ?";
         try (PreparedStatement pst = connection.prepareStatement(query)) {
             pst.setInt(1, entity.getIdProduct());
             pst.executeUpdate();

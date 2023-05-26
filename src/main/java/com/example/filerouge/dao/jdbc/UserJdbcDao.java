@@ -18,20 +18,20 @@ public class UserJdbcDao implements UserDao {
     @Override
     public List<User> findAll() {
         Connection connection = ConnectionManager.getInstance();
-        String query = "SELECT *  FROM users u INNER JOIN roles r ON u.idRole = r.idRole";
+        String query = "SELECT *  FROM users u INNER JOIN roles r ON u.role_id_role = r.id_role";
         List<User> userList = new ArrayList<>();
         try (Statement pst = connection.createStatement()) {
             ResultSet result = pst.executeQuery(query);
             while (result.next()) {
                 User user = new User(
-                        result.getInt("idUser"),
+                        result.getInt("id_user"),
                         result.getString("username"),
                         result.getString("password"),
-                        result.getString("fullName"),
+                        result.getString("full_name"),
                         result.getString("email"),
                         result.getString("address"),
-                        result.getString("phoneNumber"),
-                        new Role(result.getInt("idRole"),result.getString("roleName"))
+                        result.getString("phone_number"),
+                        new Role(result.getInt("id_role"),result.getString("role_name"))
                 );
                 userList.add(user);
             }
@@ -45,19 +45,19 @@ public class UserJdbcDao implements UserDao {
     public User findById(Integer integer) {
         User userFound = null;
         Connection connection = ConnectionManager.getInstance();
-        String query = "SELECT *  FROM users u INNER JOIN roles r ON u.idRole = r.idRole WHERE u.idUser = ?";
+        String query = "SELECT *  FROM users u INNER JOIN roles r ON u.role_id_role = r.id_role WHERE u.id_user = ?";
         try(PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, integer);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                int idUser = resultSet.getInt("idUser");
+                int idUser = resultSet.getInt("id_user");
                 String username = resultSet.getString("username");
                 String password = resultSet.getString("password");
-                String fullName = resultSet.getString("fullName");
+                String fullName = resultSet.getString("full_name");
                 String email = resultSet.getString("email");
                 String address = resultSet.getString("address");
-                String phoneNumber = resultSet.getString("phoneNumber");
-                Role role = new Role(resultSet.getInt("idRole"),resultSet.getString("roleName"));
+                String phoneNumber = resultSet.getString("phone_number");
+                Role role = new Role(resultSet.getInt("id_role"),resultSet.getString("role_name"));
                 userFound = new User(idUser,username,password,fullName,email,address,phoneNumber,role);
             }
         } catch (SQLException e) {
@@ -69,7 +69,7 @@ public class UserJdbcDao implements UserDao {
     @Override
     public void update(User entity) {
         Connection connection = ConnectionManager.getInstance();
-        String query = "UPDATE users SET username = ?, password = ?, fullName = ?, email = ?, address = ?, phoneNumber = ?, idRole = ? WHERE idUser = ?";
+        String query = "UPDATE users SET username = ?, password = ?, full_name = ?, email = ?, address = ?, phone_number = ?, role_id_role = ? WHERE id_user = ?";
         try (PreparedStatement pst = connection.prepareStatement(query)) {
             pst.setString(1, entity.getUsername());
             pst.setString(2, entity.getPassword());
@@ -92,19 +92,19 @@ public class UserJdbcDao implements UserDao {
     public User findByUsername(String usernameFind) {
         User userFound = null;
         Connection connection = ConnectionManager.getInstance();
-        String query = "SELECT *  FROM users u INNER JOIN roles r ON u.idRole = r.idRole WHERE u.username = ?";
+        String query = "SELECT *  FROM users u INNER JOIN roles r ON u.role_id_role = r.id_role WHERE u.username = ?";
         try(PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, usernameFind);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                int idUser = resultSet.getInt("idUser");
+                int idUser = resultSet.getInt("id_user");
                 String username = resultSet.getString("username");
                 String password = resultSet.getString("password");
-                String fullName = resultSet.getString("fullName");
+                String fullName = resultSet.getString("full_name");
                 String email = resultSet.getString("email");
                 String address = resultSet.getString("address");
-                String phoneNumber = resultSet.getString("phoneNumber");
-                Role role = new Role(resultSet.getInt("idRole"),resultSet.getString("roleName"));
+                String phoneNumber = resultSet.getString("phone_number");
+                Role role = new Role(resultSet.getInt("id_role"),resultSet.getString("role_name"));
                 userFound = new User(idUser,username,password,fullName,email,address,phoneNumber,role);
             }
         } catch (SQLException e) {

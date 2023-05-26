@@ -10,7 +10,8 @@
 </head>
 <body>
 <c:import url="header.jsp"></c:import>
-<h1>Update Category</h1>
+<div class="container my-5">
+<h1 class="mb-4">Update Category</h1>
 <form method="post" action="${pageContext.request.contextPath}/auth/update-category">
     <div class="input-group mb-3">
         <input type="hidden" class="form-control" name="id" value="${id}">
@@ -28,7 +29,7 @@
     <div class="input-group">
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>
-
 </form>
+</div>
 </body>
 </html>

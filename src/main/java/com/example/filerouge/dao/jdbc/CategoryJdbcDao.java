@@ -12,7 +12,7 @@ public class CategoryJdbcDao implements CategoryDao {
     @Override
     public Category create(Category entity) {
         Connection connection = ConnectionManager.getInstance();
-        String query = "INSERT INTO categories (nameCategory,descriptionCategory) VALUES (?,?)";
+        String query = "INSERT INTO categories (name_category,description_category) VALUES (?,?)";
         try (PreparedStatement pst = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
             pst.setString(1, entity.getNameCategory());
             pst.setString(2, entity.getDescriptionCategory());
@@ -33,7 +33,7 @@ public class CategoryJdbcDao implements CategoryDao {
     @Override
     public List<Category> findAll() {
         Connection connection = ConnectionManager.getInstance();
-        String query = "SELECT idCategory, nameCategory,descriptionCategory FROM categories";
+        String query = "SELECT id_category, name_category,description_category FROM categories";
         List<Category> categoryList = new ArrayList<>();
 
         try (Statement pst = connection.createStatement()) {
@@ -41,9 +41,9 @@ public class CategoryJdbcDao implements CategoryDao {
 
             while (result.next()) {
                 Category category = new Category(
-                        result.getInt("idCategory"),
-                        result.getString("nameCategory"),
-                        result.getString(("descriptionCategory"))
+                        result.getInt("id_category"),
+                        result.getString("name_category"),
+                        result.getString(("description_category"))
                 );
                 categoryList.add(category);
             }
@@ -56,15 +56,15 @@ public class CategoryJdbcDao implements CategoryDao {
     @Override
     public Category findById(Integer integer) {
         Connection connection = ConnectionManager.getInstance();
-        String query = "SELECT idCategory, nameCategory,descriptionCategory  FROM categories WHERE idCategory = ?";
+        String query = "SELECT id_category, name_category,description_category  FROM categories WHERE id_category = ?";
         try (PreparedStatement pst = connection.prepareStatement(query)) {
             pst.setInt(1, integer);
             ResultSet result = pst.executeQuery();
             if (result.next()) {
                 return new Category(
-                        result.getInt("idCategory"),
-                        result.getString("nameCategory"),
-                        result.getString("descriptionCategory")
+                        result.getInt("id_category"),
+                        result.getString("name_category"),
+                        result.getString("description_category")
                 );
             } else {
                 return null;
@@ -78,7 +78,7 @@ public class CategoryJdbcDao implements CategoryDao {
     @Override
     public void update(Category entity) {
         Connection connection = ConnectionManager.getInstance();
-        String query = "UPDATE categories SET nameCategory = ?,descriptionCategory = ? WHERE idCategory = ?";
+        String query = "UPDATE categories SET name_category = ?,description_category = ? WHERE id_category = ?";
         try (PreparedStatement pst = connection.prepareStatement(query)) {
             pst.setString(1, entity.getNameCategory());
             pst.setString(2, entity.getDescriptionCategory());
@@ -92,7 +92,7 @@ public class CategoryJdbcDao implements CategoryDao {
     @Override
     public void delete(Category entity) {
         Connection connection = ConnectionManager.getInstance();
-        String query = "DELETE FROM categories WHERE idCategory = ?";
+        String query = "DELETE FROM categories WHERE id_category = ?";
         try (PreparedStatement pst = connection.prepareStatement(query)) {
             pst.setInt(1, entity.getIdCategory());
             pst.executeUpdate();
