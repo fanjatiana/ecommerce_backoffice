@@ -15,12 +15,9 @@
         <table class="table table-bordered">
             <thead>
             <tr>
-                <th>Id</th>
                 <th>Username</th>
                 <th>Full name</th>
                 <th>Email</th>
-                <th>Address</th>
-                <th>Phone number</th>
                 <th>Role</th>
                 <th>Edit</th>
             </tr>
@@ -28,12 +25,9 @@
             <tbody>
             <c:forEach items="${users}" var="user">
                 <tr>
-                    <td>${user.getIdUser()}</td>
                     <td>${user.getUsername()}</td>
                     <td>${user.getFullName()}</td>
                     <td>${user.getEmail()}</td>
-                    <td>${user.getAddress()}</td>
-                    <td>${user.getPhoneNumber()}</td>
                     <td>${user.getRole().getRoleName()}</td>
                     <td><a href="${pageContext.request.contextPath}/auth/update-user?id=${user.getIdUser()}">Edit role</a></td>
                 </tr>

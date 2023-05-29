@@ -18,12 +18,12 @@
     </div>
     <div class="mb-3">
         <label for="nameCategory" class="form-label">Category Name:</label>
-        <input type="text" class="form-control" name="nameCategory" id="nameCategory" placeholder="Category Name...">
+        <input type="text" class="form-control" name="nameCategory" id="nameCategory" placeholder="Category Name..." maxlength="50" pattern="[a-zA-Z0-9 ]+" title="The category name must only contain letters, numbers, and spaces.">
     </div>
 
     <div class="mb-3">
         <label for="descriptionCategory" class="form-label">Category Description:</label>
-        <textarea class="form-control" name="descriptionCategory" id="descriptionCategory" placeholder="Category Description..."></textarea>
+        <input class="form-control" type="text" id="descriptionCategory" name="descriptionCategory" placeholder="Enter category description" maxlength="200" pattern="[a-zA-Z0-9 ]+" title="The category description must only contain letters, numbers, and spaces.">
     </div>
 
     <div class="input-group">

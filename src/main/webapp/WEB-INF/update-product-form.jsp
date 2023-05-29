@@ -18,15 +18,15 @@
     </div>
     <div class="mb-3">
         <label for="nameProduct" class="form-label">Name Product</label>
-        <input type="text" class="form-control" name="nameProduct" id="nameProduct" value="${nameProduct}" placeholder="Name Product...">
+        <input type="text" class="form-control" name="nameProduct" id="nameProduct" value="${nameProduct}" placeholder="Name Product..." maxlength="50" pattern="[a-zA-Z0-9 ]+" title="The product name must only contain letters, numbers, and spaces.">
     </div>
     <div class="mb-3">
         <label for="descriptionProduct" class="form-label">Description Product</label>
-        <input type="text" class="form-control" name="descriptionProduct" id="descriptionProduct" placeholder="Description Product...">
+        <input type="text" class="form-control" name="descriptionProduct" id="descriptionProduct" placeholder="Description Product..." maxlength="200" pattern="[a-zA-Z0-9 ]+" title="The product description must only contain letters, numbers, and spaces.">
     </div>
     <div class="mb-3">
         <label for="priceProduct" class="form-label">Price Product</label>
-        <input type="text" class="form-control" name="priceProduct" id="priceProduct" placeholder="Price Product...">
+        <input type="text" class="form-control" name="priceProduct" id="priceProduct" placeholder="Price Product..." pattern="[0-9]+(\.[0-9]{1,2})?" title="The product price must be a valid number (e.g., 10 or 10.99).">
     </div>
     <div class="mb-3">
         <label for="photoProduct" class="form-label">Photo Product</label>

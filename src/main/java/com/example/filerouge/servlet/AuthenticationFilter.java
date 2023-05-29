@@ -33,12 +33,13 @@ public class AuthenticationFilter extends HttpFilter {
                 chain.doFilter(request, response);
             } else if (userRole.equals("admin")) {
                 if (uri.contains("/list-user") || uri.contains("/update-user")) {
-                    res.sendRedirect(req.getContextPath() + "/error.jsp");
+                    res.sendRedirect(req.getContextPath() + "/auth/list-product");
                 } else {
                     chain.doFilter(request, response);
                 }
             } else {
-                res.sendRedirect(req.getContextPath() + "/error.jsp");
+                session.invalidate();
+                res.sendRedirect(req.getContextPath() + "/login");
             }
         }
     }

@@ -15,11 +15,11 @@
     <form method="post" action="${pageContext.request.contextPath}/auth/add-category">
         <div class="mb-3">
             <label for="nameCategory" class="form-label">Category Name</label>
-            <input type="text" class="form-control form-control-lg" id="nameCategory" name="nameCategory" placeholder="Enter category name" maxlength="50">
+            <input type="text" class="form-control form-control-lg" id="nameCategory" name="nameCategory" placeholder="Enter category name" maxlength="50" pattern="[a-zA-Z0-9 ]+" title="The category name must only contain letters, numbers, and spaces.">
         </div>
         <div class="mb-3">
             <label for="descriptionCategory" class="form-label">Category Description</label>
-            <textarea class="form-control" id="descriptionCategory" name="descriptionCategory" placeholder="Enter category description" rows="3"></textarea>
+            <input class="form-control" type="text" id="descriptionCategory" name="descriptionCategory" placeholder="Enter category description" maxlength="200" pattern="[a-zA-Z0-9 ]+" title="The category description must only contain letters, numbers, and spaces.">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>

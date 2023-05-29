@@ -14,16 +14,16 @@
     <h1 class="mb-4">Add Product</h1>
     <form method="post" action="${pageContext.request.contextPath}/auth/add-product" enctype="multipart/form-data">
         <div class="mb-3">
-            <label for="nameProduct" class="form-label">Product Name</label>
-            <input type="text" class="form-control form-control-lg" id="nameProduct" name="nameProduct" placeholder="Enter product name" maxlength="50">
+            <label for="nameProduct" class="form-label">Product Name:</label>
+            <input type="text" class="form-control" name="nameProduct" id="nameProduct" placeholder="Enter product name" maxlength="50" pattern="[a-zA-Z0-9 ]+" title="The product name must only contain letters, numbers, and spaces.">
         </div>
         <div class="mb-3">
-            <label for="descriptionProduct" class="form-label">Product Description</label>
-            <textarea class="form-control" id="descriptionProduct" name="descriptionProduct" placeholder="Enter product description" rows="3"></textarea>
+            <label for="descriptionProduct" class="form-label">Product Description:</label>
+            <input type="text" class="form-control" name="descriptionProduct" id="descriptionProduct" placeholder="Enter product description" rows="3" maxlength="200" pattern="[a-zA-Z0-9 ]+" title="The product description must only contain letters, numbers, and spaces.">
         </div>
         <div class="mb-3">
-            <label for="PriceProduct" class="form-label">Product Price</label>
-            <input type="text" class="form-control" id="PriceProduct" name="PriceProduct" placeholder="Enter product price" maxlength="10">
+            <label for="PriceProduct" class="form-label">Product Price:</label>
+            <input type="text" class="form-control" name="PriceProduct" id="PriceProduct" placeholder="Enter product price" maxlength="10" pattern="[0-9]+(\.[0-9]{1,2})?" title="The product price must be a valid number (e.g., 10 or 10.99).">
         </div>
         <div class="mb-3">
             <label for="photoProduct" class="form-label">Product Photo</label>

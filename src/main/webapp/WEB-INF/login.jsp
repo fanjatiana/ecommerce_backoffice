@@ -18,16 +18,19 @@
                 <div class="card shadow-lg">
                     <div class="card-body p-5">
                         <h1 class="fs-4 card-title fw-bold mb-4">Login</h1>
+                        <c:if test="${isError == true}">
+                            <p>Username and/or password incorrect.</p>
+                        </c:if>
                         <form action="${pageContext.request.contextPath}/login" method="post">
                             <div class="mb-3">
                                 <label class="mb-2 text-muted" >Username</label>
-                                <input type="text" class="form-control" name="username" placeholder="username">
+                                <input type="text" class="form-control" name="username" placeholder="username" pattern="[a-zA-Z0-9]+" title="The username must only contain letters and numbers.">
                             </div>
                             <div class="mb-3">
                                 <div class="mb-2 w-100">
                                     <label class="text-muted" >Password</label>
                                 </div>
-                                <input type="password" class="form-control" name="password" placeholder="password">
+                                <input type="password" class="form-control" name="password" placeholder="password" pattern="[a-zA-Z0-9]+" title="The password must only contain letters and numbers.">
                             </div>
                             <div class="d-flex align-items-center">
                                 <button type="submit" class="btn btn-primary ms-auto">
@@ -42,9 +45,6 @@
     </div>
 </section>
 
-<c:if test="${isError == true}">
-    <p>Bad credentials.</p>
-</c:if>
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.2.0/js/bootstrap.min.js"></script>
 </body>
